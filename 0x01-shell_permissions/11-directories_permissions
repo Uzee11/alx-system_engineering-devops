@@ -1,1 +1,1 @@
-chmo -R +x .
+chmod -R +x .
