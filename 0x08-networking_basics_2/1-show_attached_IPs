@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Extract and display all active IPv4 IPs
+ip -o -4 addr show scope global | awk '{print $4}' | cut -d '/' -f1
+
