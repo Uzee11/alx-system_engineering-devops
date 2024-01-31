@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Display listening TCP ports
+echo "Active Internet connections (only servers)"
+echo "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
+netstat -tlnp | awk '$1 == "tcp" {print $1, "\t",$2, "\t",$3, "\t",$4, "\t",$5, "\t",$6, "\t",$7}'
+
+# Display listening UDP ports
+netstat -ulnp | awk '$1 == "udp" {print $1, "\t",$2, "\t",$3, "\t",$4, "\t",$5, "\t",$6, "\t",$7}'
+
+# Display active UNIX domain sockets
+echo "Active UNIX domain sockets (only servers)"
+echo "Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path"
+netstat -x | awk '$1 == "unix" {print $1, "\t",$2, "\t",$3, "\t",$4, "\t",$5, "\t",$6, "\t",$7, "\t",$8}'
+
