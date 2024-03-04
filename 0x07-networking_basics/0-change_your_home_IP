@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Check if running as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "Please run this script as root."
+    exit 1
+fi
+
+# Define new IP addresses
+LOCALHOST_IP="127.0.0.2"
+FACEBOOK_IP="8.8.8.8"
+
+# Update /etc/hosts file
+sed -i "/^127.0.0.1/ s/$/ $LOCALHOST_IP/" /etc/hosts
+sed -i "/^.*facebook.com/ s/$/ $FACEBOOK_IP/" /etc/hosts
+
+# Flush DNS cache
+systemd-resolve --flush-caches
